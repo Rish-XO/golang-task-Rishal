@@ -7,12 +7,12 @@ import (
     pb "golang-task-Rishal/userpb"
 )
 
-type server struct {
+type Server struct {
     pb.UnimplementedUserServiceServer
     users []pb.User
 }
 
-func (s *server) GetUser(ctx context.Context, req *pb.UserIdRequest) (*pb.UserResponse, error) {
+func (s *Server) GetUser(ctx context.Context, req *pb.UserIdRequest) (*pb.UserResponse, error) {
     for _, user := range s.users {
         if user.Id == req.Id {
             return &pb.UserResponse{User: &user}, nil
@@ -21,7 +21,7 @@ func (s *server) GetUser(ctx context.Context, req *pb.UserIdRequest) (*pb.UserRe
     return nil, errors.New("user not found")
 }
 
-func (s *server) GetUsers(ctx context.Context, req *pb.UserIdsRequest) (*pb.UsersResponse, error) {
+func (s *Server) GetUsers(ctx context.Context, req *pb.UserIdsRequest) (*pb.UsersResponse, error) {
     var users []*pb.User
     for _, id := range req.Ids {
         for _, user := range s.users {
@@ -33,7 +33,7 @@ func (s *server) GetUsers(ctx context.Context, req *pb.UserIdsRequest) (*pb.User
     return &pb.UsersResponse{Users: users}, nil
 }
 
-func (s *server) SearchUsers(ctx context.Context, req *pb.SearchRequest) (*pb.UsersResponse, error) {
+func (s *Server) SearchUsers(ctx context.Context, req *pb.SearchRequest) (*pb.UsersResponse, error) {
     var users []*pb.User
     for _, user := range s.users {
         if (req.City == "" || user.City == req.City) &&

@@ -8,7 +8,7 @@ import (
 )
 
 func TestGetUser(t *testing.T) {
-    s := &server{
+    s := &Server{
         users: []pb.User{
             {Id: 1, Fname: "Steve", City: "LA", Phone: 1234567890, Height: 5.8, Married: true},
             {Id: 2, Fname: "John", City: "NY", Phone: 9876543210, Height: 6.0, Married: false},
@@ -25,7 +25,7 @@ func TestGetUser(t *testing.T) {
 }
 
 func TestGetUsers(t *testing.T) {
-    s := &server{
+    s := &Server{
         users: []pb.User{
             {Id: 1, Fname: "Steve", City: "LA", Phone: 1234567890, Height: 5.8, Married: true},
             {Id: 2, Fname: "John", City: "NY", Phone: 9876543210, Height: 6.0, Married: false},
@@ -42,7 +42,7 @@ func TestGetUsers(t *testing.T) {
 }
 
 func TestSearchUsers(t *testing.T) {
-    s := &server{
+    s := &Server{
         users: []pb.User{
             {Id: 1, Fname: "Steve", City: "LA", Phone: 1234567890, Height: 5.8, Married: true},
             {Id: 2, Fname: "John", City: "NY", Phone: 9876543210, Height: 6.0, Married: false},
